@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input, Label } from "@/components/ui/card";
 import { registerCustomer } from "@/lib/api/customers";
 import { ApiClientError } from "@/lib/api-client";
+import Image from "next/image";
 
 export default function Home() {
   const router = useRouter();
@@ -61,23 +62,28 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-ink">
-      <section className="pattern-guilloche relative overflow-hidden border-b border-line-soft px-6 pb-16 pt-20 sm:pt-28">
+      <section className="pattern-guilloche relative overflow-hidden border-b border-line-soft px-6 py-7 mb-7">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-gold-dim">
-            Meridian Corporate Gifts
-          </p>
+          <Image
+                                          src="/logo.png"
+                                          alt="Logo"
+                                          width={100}
+                                          height={100}
+                                          priority
+                                          className="h-24 w-24 sm:h-28 sm:w-28 object-contain transition-opacity hover:opacity-80 mx-auto"
+                                        />
 
           <h1 className="mt-5 font-display text-4xl text-ivory sm:text-6xl">
             Join Our Loyalty Program
           </h1>
 
           <p className="mx-auto mt-5 max-w-xl text-mist">
-            Register once with your phone number and start earning points on every purchase.
+            Register with your name and phone number once to enjoy earning loyalty points on every purchase.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto -mt-10 max-w-md px-6 pb-24">
+      <section className="mx-auto max-w-md px-6 pb-24">
         <div className="rounded-2xl border border-line bg-surface p-6 shadow-2xl shadow-black/40">
 
           {!joined ? (
@@ -87,7 +93,7 @@ export default function Home() {
                 <Label htmlFor="name">Full name</Label>
                 <Input
                   id="name"
-                  placeholder="Sokha Chan"
+                  placeholder="Rithy"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                 />
@@ -98,7 +104,7 @@ export default function Home() {
                 <Input
                   id="phone"
                   inputMode="tel"
-                  placeholder="097 712 3456"
+                  placeholder="016727570"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
