@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Meridian Rewards — Corporate Gifts Loyalty",
-  description: "Digital membership and loyalty rewards for Meridian Corporate Gifts.",
+  title: "CSPremiumSolutions Loyalty",
+  description: "Digital membership and loyalty rewards for CSPremiumSolutions.",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({
