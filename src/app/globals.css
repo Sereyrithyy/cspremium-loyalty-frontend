@@ -1,0 +1,102 @@
+@import "tailwindcss";
+@import "@fontsource/fraunces/400.css";
+@import "@fontsource/fraunces/500.css";
+@import "@fontsource/fraunces/600.css";
+@import "@fontsource/fraunces/600-italic.css";
+@import "@fontsource/manrope/400.css";
+@import "@fontsource/manrope/500.css";
+@import "@fontsource/manrope/600.css";
+@import "@fontsource/manrope/700.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+
+:root {
+  --ink: #0b0b0d;
+  --ink-soft: #111014;
+  --surface: #17151b;
+  --surface-2: #1f1c24;
+  --surface-3: #262230;
+  --gold: #c9a24d;
+  --gold-bright: #e8c874;
+  --gold-dim: #8a6f35;
+  --ivory: #f3efe4;
+  --mist: #9c97a3;
+  --mist-dim: #6b6772;
+  --emerald: #5a9c78;
+  --rust: #c06a45;
+  --line: #2a2830;
+  --line-soft: #211f27;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-dim: var(--gold-dim);
+  --color-ivory: var(--ivory);
+  --color-mist: var(--mist);
+  --color-mist-dim: var(--mist-dim);
+  --color-emerald: var(--emerald);
+  --color-rust: var(--rust);
+  --color-line: var(--line);
+  --color-line-soft: var(--line-soft);
+  --font-display: "Fraunces", serif;
+  --font-sans: "Manrope", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+body {
+  background: var(--ink);
+  color: var(--ivory);
+  font-family: var(--font-sans);
+}
+
+.pattern-guilloche {
+  background-image:
+    repeating-linear-gradient(115deg, rgba(201, 162, 77, 0.07) 0px, rgba(201, 162, 77, 0.07) 1px, transparent 1px, transparent 10px),
+    repeating-linear-gradient(65deg, rgba(201, 162, 77, 0.05) 0px, rgba(201, 162, 77, 0.05) 1px, transparent 1px, transparent 14px);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card-sheen {
+    background: linear-gradient(
+      115deg,
+      transparent 20%,
+      rgba(232, 200, 116, 0.16) 40%,
+      rgba(232, 200, 116, 0.28) 48%,
+      rgba(232, 200, 116, 0.16) 56%,
+      transparent 80%
+    );
+    background-size: 220% 220%;
+    background-position: 0% 0%;
+    transition: background-position 0.9s ease;
+  }
+  .group:hover .card-sheen {
+    background-position: 100% 100%;
+  }
+}
+
+::selection {
+  background: var(--gold-dim);
+  color: var(--ivory);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border-radius: 999px;
+}
