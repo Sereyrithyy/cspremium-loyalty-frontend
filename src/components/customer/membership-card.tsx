@@ -100,7 +100,7 @@ export const MembershipCard = forwardRef<HTMLDivElement, MembershipCardProps>(
 
                 {/* QR Code with improved styling */}
                 <div className="shrink-0 flex flex-col items-center gap-1.5">
-                  <div className="relative rounded-xl bg-white/5 p-1.5 ring-1 ring-gold/10 backdrop-blur-sm transition-all duration-300 hover:ring-gold/30">
+                  <div className="relative rounded-xl bg-white/5 p-1 ring-1 ring-gold/10 backdrop-blur-sm transition-all duration-300 hover:ring-gold/30">
                     <div className="absolute inset-0 rounded-xl bg-linear-to-br from-gold/5 to-transparent" />
                     <div className="relative w-14 h-14 sm:w-18 sm:h-18 md:w-24 md:h-24">
                       <QRCodeSVG 
@@ -114,7 +114,7 @@ export const MembershipCard = forwardRef<HTMLDivElement, MembershipCardProps>(
                       />
                     </div>
                   </div>
-                  <p className="text-[7px] sm:text-[12px] font-light uppercase tracking-[0.2em] text-mist/30 text-center leading-tight">
+                  <p className="text-[7px] sm:text-[12px] font-light uppercase tracking-[0.2em] text-center leading-tight">
                     Scan to access
                   </p>
                 </div>

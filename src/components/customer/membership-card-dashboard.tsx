@@ -43,7 +43,7 @@ export const MembershipCardDashboard = forwardRef<HTMLDivElement, MembershipCard
         {/* Outer glow effect */}
         <div className="absolute -inset-0.5 rounded-2xl bg-linear-to-r from-gold-dim/20 via-gold/10 to-gold-dim/20 blur-xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
         
-        <div className="relative aspect-[1.62/1] w-full overflow-hidden rounded-2xl bg-linear-to-br from-[#1a161f] via-[#121016] to-[#0a090d] p-px shadow-[0_20px_60px_-25px_rgba(201,162,77,0.3)]">
+        <div className="relative aspect-[1.62/1] w-full overflow-hidden rounded-2xl bg-linear-to-br from-gold/30 via-gold/30 to-gold/30 p-px">
           {/* Inner card with premium texture */}
           <div className="relative h-full w-full rounded-2xl bg-linear-to-br from-[#1e1a24] via-[#16131c] to-[#0d0b10] px-5 py-4">
             {/* Subtle pattern overlay */}
@@ -76,7 +76,7 @@ export const MembershipCardDashboard = forwardRef<HTMLDivElement, MembershipCard
                 </div>
                 
                 {/* Tier badge with gradient */}
-                <div className={`rounded-full bg-linear-to-br ${tierColor} px-3 py-1 text-[9px] font-semibold uppercase tracking-widest shadow-lg shadow-gold/5 ring-1 ring-gold/20 backdrop-blur-sm`}>
+                <div className={`rounded-full bg-linear-to-br ${tierColor} px-3 py-1 text-[9px] font-semibold uppercase tracking-widest ring-1 ring-gold/20 backdrop-blur-sm`}>
                   {customer.tier}
                 </div>
               </div>
@@ -114,7 +114,7 @@ export const MembershipCardDashboard = forwardRef<HTMLDivElement, MembershipCard
 
                 {/* QR Code with improved styling */}
                 <div className="shrink-0 flex flex-col items-center gap-1.5">
-                  <div className="relative rounded-xl bg-white/5 p-1.5 ring-1 ring-gold/10 backdrop-blur-sm transition-all duration-300 hover:ring-gold/30">
+                  <div className="relative rounded-xl bg-white/5 p-1 ring-1 ring-gold/10 backdrop-blur-sm transition-all duration-300 hover:ring-gold/30">
                     <div className="absolute inset-0 rounded-xl bg-linear-to-br from-gold/5 to-transparent" />
                     <QRCodeSVG 
                       value={qrValue}
@@ -126,7 +126,7 @@ export const MembershipCardDashboard = forwardRef<HTMLDivElement, MembershipCard
                       className="relative"
                     />
                   </div>
-                  <p className="text-[7px] font-light uppercase tracking-[0.2em] text-mist/30 text-center leading-tight">
+                  <p className="text-[7px] font-light uppercase tracking-[0.2em] text-center leading-tight">
                     Scan to access
                   </p>
                 </div>

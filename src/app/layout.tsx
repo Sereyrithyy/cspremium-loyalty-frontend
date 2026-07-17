@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "CSPremium-Loyalty",
+  title: "CS Premium Loyalty",
   description: "Digital membership and loyalty rewards for CSPremiumSolutions.",
   icons: {
     icon: "/favicon.ico",
