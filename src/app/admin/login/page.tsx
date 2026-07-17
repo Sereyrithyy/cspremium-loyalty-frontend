@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input, Label } from "@/components/ui/card";
 import { login } from "@/lib/api/auth";
 import { ApiClientError } from "@/lib/api-client";
+import Image from "next/image";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -37,9 +38,15 @@ export default function AdminLoginPage() {
     <main className="pattern-guilloche flex min-h-screen items-center justify-center bg-ink px-6">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 h-2 w-2 rounded-full bg-gold" />
-          <p className="font-display text-xl italic text-ivory">CSPremiumSolutions</p>
-          <p className="mt-1 text-[13px] text-mist-dim">Sign in to manage members and points</p>
+          <Image
+                                src="/logo.png"
+                                alt="Logo"
+                                width={100}
+                                height={100}
+                                priority
+                                className="h-24 w-24 sm:h-24 sm:w-24 object-contain transition-opacity hover:opacity-80 mx-auto"
+                              />
+          <p className="mt-5 text-[15px] text-mist-dim">Sign in to manage members and points</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl border border-line bg-surface p-6 shadow-2xl shadow-black/40">
@@ -48,7 +55,7 @@ export default function AdminLoginPage() {
             <Input
               id="email"
               type="email"
-              placeholder="admin@meridiangifts.com"
+              placeholder="Enter Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               autoComplete="email"
@@ -59,7 +66,7 @@ export default function AdminLoginPage() {
             <Input
               id="password"
               type="password"
-              placeholder="••••••••"
+              placeholder="Enter Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"
@@ -69,9 +76,6 @@ export default function AdminLoginPage() {
           <Button type="submit" className="w-full" size="lg" disabled={loading}>
             {loading ? "Signing in…" : "Sign in"}
           </Button>
-          <p className="text-center text-[12px] text-mist-dim">
-            Demo login — admin@meridiangifts.com / password123
-          </p>
         </form>
 
         <p className="mt-6 text-center">
