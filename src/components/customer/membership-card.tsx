@@ -21,9 +21,9 @@ export const MembershipCard = forwardRef<HTMLDivElement, MembershipCardProps>(
     // Tier color mapping
     const tierColors = {
       bronze: "from-amber-700/20 to-amber-700/5 border-amber-600/30 text-amber-400",
-      silver: "from-gray-300/20 to-gray-300/5 border-gray-400/30 text-gray-300",
+      standard: "from-gray-300/20 to-gray-300/5 border-gray-400/30 text-gray-300",
       gold: "from-yellow-500/20 to-yellow-500/5 border-yellow-500/30 text-yellow-400",
-      platinum: "from-blue-400/20 to-blue-400/5 border-blue-400/30 text-blue-300",
+      vip: "from-blue-400/20 to-blue-400/5 border-blue-400/30 text-blue-300",
       diamond: "from-cyan-400/20 to-cyan-400/5 border-cyan-400/30 text-cyan-300",
     };
 

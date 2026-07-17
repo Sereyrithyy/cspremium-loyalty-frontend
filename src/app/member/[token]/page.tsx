@@ -82,9 +82,6 @@ export default async function MemberPage({
   return (
     <main className="min-h-screen bg-ink pb-24">
       <div className="mx-auto max-w-2xl px-6 pt-10">
-        <Link href="/" className="text-[12px] text-mist-dim hover:text-mist">
-          ← Back
-        </Link>
 
         <div className="mt-6">
           <MembershipCardWithDownload customer={customer} />
