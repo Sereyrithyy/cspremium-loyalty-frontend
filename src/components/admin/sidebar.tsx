@@ -60,8 +60,7 @@ export function AdminSidebar() {
       >
         <div className="flex h-16 items-center justify-between gap-2 border-b border-line-soft px-5">
           <div className="flex items-center gap-2">
-            <div className="h-2 w-2 rounded-full bg-gold" />
-            <span className="font-display text-[17px] italic text-ivory">CSPremiumSolutions</span>
+            <span className="font-display text-[17px] italic text-[#c9a24d]">CS Premium Solutions</span>
           </div>
           <button
             onClick={close}
