@@ -34,7 +34,7 @@ export const MembershipCard = forwardRef<HTMLDivElement, MembershipCardProps>(
         {/* Outer glow effect */}
         <div className="absolute -inset-0.5 rounded-2xl bg-linear-to-r from-gold-dim/20 via-gold/10 to-gold-dim/20 blur-xl opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
         
-        <div className="relative aspect-[1.62/1] w-full overflow-hidden rounded-2xl bg-linear-to-br from-[#1a161f] via-[#121016] to-[#0a090d] p-px shadow-[0_20px_60px_-25px_rgba(201,162,77,0.3)]">
+        <div className="relative aspect-[1.62/1] w-full overflow-hidden rounded-2xl bg-linear-to-br from-gold/40 via-gold/40 to-gold/40 p-px">
           {/* Inner card with premium texture */}
           <div className="relative h-full w-full rounded-2xl bg-linear-to-br from-[#1e1a24] via-[#16131c] to-[#0d0b10] px-5 py-4">
             <div className="relative flex h-full flex-col justify-between">
@@ -74,21 +74,21 @@ export const MembershipCard = forwardRef<HTMLDivElement, MembershipCardProps>(
                     {customer.name}
                   </p>
                   
-                  <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] sm:text-[15px] tracking-wider text-mist/60">
+                  <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] sm:text-[15px] tracking-wider">
                     <span className="flex items-center gap-1.5">
-                      <span className="text-gold/40">◆</span>
+                      <span className="text-gold/50">◆</span>
                       {customer.memberId}
                     </span>
                     <span className="text-gold/20">|</span>
                     <span className="flex items-center gap-1.5">
-                      <span className="text-gold/40">◉</span>
+                      <span className="text-gold/50">◉</span>
                       {customer.phone}
                     </span>
                   </div>
 
                   <div className="mt-4 flex items-end gap-3">
                     <div>
-                      <p className="text-[9px] sm:text-[12px] font-light uppercase tracking-[0.25em] text-mist/40">
+                      <p className="text-[9px] sm:text-[12px] font-light uppercase tracking-[0.25em] text-mist/110">
                         Points Balance
                       </p>
                       <p className="font-display text-4xl font-light tracking-tight text-gold-bright sm:text-5xl">
@@ -115,7 +115,7 @@ export const MembershipCard = forwardRef<HTMLDivElement, MembershipCardProps>(
                     </div>
                   </div>
                   <p className="text-[7px] sm:text-[12px] font-light uppercase tracking-[0.2em] text-center leading-tight">
-                    Scan to access
+                    Scan to open
                   </p>
                 </div>
               </div>

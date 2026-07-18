@@ -19,7 +19,7 @@ function AddPointsForm() {
   const [customer, setCustomer] = useState<Customer | null>(null);
   const [purchaseAmount, setPurchaseAmount] = useState("");
   const [points, setPoints] = useState("");
-  const [reason, setReason] = useState("Corporate Gift Purchase");
+  const [reason, setReason] = useState("");
   const [reference, setReference] = useState("");
   const [notes, setNotes] = useState("");
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
@@ -117,7 +117,7 @@ function AddPointsForm() {
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label htmlFor="purchase">Purchase amount (USD)</Label>
+            <Label htmlFor="purchase">Purchase amount ($)</Label>
             <Input
               id="purchase"
               inputMode="decimal"
