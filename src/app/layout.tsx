@@ -3,11 +3,21 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "CS Premium Loyalty",
-  description: "Digital membership and loyalty rewards for CSPremiumSolutions.",
+  description: "Digital membership and loyalty rewards for CS Premium Solutions.",
+
+  manifest: "/manifest.json",
+
+  themeColor: "#C9A84C",
+
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    apple: "/icons/icon-192x192.png",
+  },
+
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "CS Premium Loyalty Rewards",
   },
 };
 
