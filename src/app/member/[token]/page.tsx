@@ -67,12 +67,12 @@ export default async function MemberPage({
         </div>
         <h1 className="mt-5 font-display text-2xl text-ivory">Membership inactive</h1>
         <p className="mt-2 max-w-sm text-[14px] text-mist">{result.message}</p>
-        <Link
+        {/* <Link
           href="/"
           className="mt-6 rounded-lg bg-gold px-5 py-2.5 text-sm font-medium text-ink hover:bg-gold-bright"
         >
           Back to home
-        </Link>
+        </Link> */}
       </main>
     );
   }
