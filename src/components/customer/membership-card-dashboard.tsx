@@ -84,7 +84,7 @@ export const MembershipCardDashboard = forwardRef<HTMLDivElement, MembershipCard
               {/* Main content */}
               <div className="flex items-end justify-between gap-6">
                 <div className="min-w-0 flex-1">
-                  <p className="font-display text-2xl font-light tracking-tight uppercase text-ivory sm:text-2xl">
+                  <p className="font-display text-xl font-light tracking-tight uppercase text-ivory sm:text-2xl">
                     {customer.name}
                   </p>
                   
