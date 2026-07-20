@@ -49,6 +49,131 @@ async function getActiveRewards(): Promise<Reward[]> {
   }
 }
 
+// Tier configuration
+const TIERS = {
+  standard: {
+    name: "Standard",
+    threshold: 0,
+    nextTier: "Gold",
+    nextThreshold: 500,
+    color: "from-gray-300/20 to-gray-300/5 border-gray-400/30 text-gray-300",
+    progressColor: "bg-gray-400",
+    badge: "⭐"
+  },
+  gold: {
+    name: "Gold",
+    threshold: 500,
+    nextTier: "VIP",
+    nextThreshold: 1000,
+    color: "from-yellow-500/20 to-yellow-500/5 border-yellow-500/30 text-yellow-400",
+    progressColor: "bg-yellow-500",
+    badge: "🌟"
+  },
+  vip: {
+    name: "VIP",
+    threshold: 1000,
+    nextTier: null,
+    nextThreshold: null,
+    color: "from-blue-400/20 to-blue-400/5 border-blue-400/30 text-blue-300",
+    progressColor: "bg-blue-400",
+    badge: "👑"
+  }
+} as const;
+
+type TierKey = keyof typeof TIERS;
+
+// IMPORTANT: Tier is based on totalEarned, NOT totalPoints
+function getTier(totalEarned: number): TierKey {
+  if (totalEarned >= 1000) return "vip";
+  if (totalEarned >= 500) return "gold";
+  return "standard";
+}
+
+function getTierInfo(totalEarned: number) {
+  const tierKey = getTier(totalEarned);
+  const tier = TIERS[tierKey];
+  
+  const progress = tier.nextThreshold 
+    ? ((totalEarned - tier.threshold) / (tier.nextThreshold - tier.threshold)) * 100
+    : 100;
+  
+  return {
+    currentTier: tierKey,
+    ...tier,
+    progress: Math.min(Math.max(progress, 0), 100),
+    pointsNeeded: tier.nextThreshold ? tier.nextThreshold - totalEarned : 0
+  };
+}
+
+// Tier Progress Component
+function TierProgress({ totalEarned }: { totalEarned: number }) {
+  const tierInfo = getTierInfo(totalEarned);
+  
+  // Extract color classes for the card
+  const [gradientFrom, gradientTo, border, textColor] = tierInfo.color.split(' ');
+  
+  return (
+    <Card className={`p-5 bg-linear-to-r ${gradientFrom} ${gradientTo} border ${border}`}>
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-sm text-white/50">Current Tier</p>
+          <p className={`font-display text-2xl ${textColor}`}>
+            {tierInfo.badge} {tierInfo.name}
+          </p>
+        </div>
+        {tierInfo.nextTier && (
+          <div className="text-right">
+            <p className="text-sm text-white/50">Next Tier</p>
+            <p className="font-display text-xl text-white/80">
+              {TIERS[tierInfo.nextTier.toLowerCase() as TierKey].badge} {tierInfo.nextTier}
+            </p>
+            <p className="text-xs text-white/50">
+              {tierInfo.pointsNeeded} more points needed
+            </p>
+          </div>
+        )}
+      </div>
+      
+      <div className="mt-4">
+        <div className="flex justify-between text-xs text-white/50 mb-1">
+          <span>{tierInfo.name}</span>
+          {tierInfo.nextTier && <span>{tierInfo.nextTier}</span>}
+        </div>
+        <div className="h-2.5 w-full rounded-full bg-white/10 overflow-hidden">
+          <div
+            className={`h-full rounded-full transition-all duration-500 ${tierInfo.progressColor}`}
+            style={{ width: `${tierInfo.progress}%` }}
+          />
+        </div>
+        <div className="flex justify-between text-xs text-white/50 mt-1">
+          <span>{formatPoints(tierInfo.threshold)}</span>
+          {tierInfo.nextThreshold ? (
+            <span>{formatPoints(tierInfo.nextThreshold)}</span>
+          ) : (
+            <span className="text-emerald">MAX LEVEL</span>
+          )}
+        </div>
+      </div>
+      
+      {tierInfo.nextTier && (
+        <div className="mt-3 flex items-center gap-2 text-xs text-white/50">
+          <span>📈</span>
+          <span>
+            {formatPoints(totalEarned)} / {formatPoints(tierInfo.nextThreshold!)} lifetime points
+          </span>
+        </div>
+      )}
+      
+      {tierInfo.currentTier === "vip" && (
+        <div className="mt-3 flex items-center gap-2 text-xs text-blue-300">
+          <span>👑</span>
+          <span>{"You've reached the highest tier!"}</span>
+        </div>
+      )}
+    </Card>
+  );
+}
+
 export default async function MemberPage({
   params,
 }: {
@@ -85,6 +210,11 @@ export default async function MemberPage({
 
         <div className="mt-6">
           <MembershipCardWithDownload customer={customer} />
+        </div>
+
+        {/* Tier Progress - based on totalEarned */}
+        <div className="mt-6">
+          <TierProgress totalEarned={customer.totalEarned} />
         </div>
 
         {/* Stat row */}
