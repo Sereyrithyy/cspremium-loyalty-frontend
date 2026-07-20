@@ -11,7 +11,19 @@ export function RewardsCatalog({
   rewards: Reward[];
   availablePoints: number;
 }) {
-  if (rewards.length === 0) return null;
+  if (rewards.length === 0) {
+    return (
+      <section className="mt-10">
+        <div className="flex items-baseline justify-between gap-3">
+          <h2 className="font-display text-xl text-ivory">Rewards</h2>
+          <p className="text-[12px] text-mist-dim">Redeemed by our team on your behalf</p>
+        </div>
+        <Card className="mt-4 p-6 text-center text-[13px] text-mist-dim">
+          No rewards available at the moment. Check back soon!
+        </Card>
+      </section>
+    );
+  }
 
   const sorted = [...rewards].sort((a, b) => a.requiredPoints - b.requiredPoints);
 
