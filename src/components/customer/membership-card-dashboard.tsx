@@ -89,13 +89,13 @@ export const MembershipCardDashboard = forwardRef<HTMLDivElement, MembershipCard
                   </p>
                   
                   <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] tracking-wider">
-                    <span className="flex items-center gap-1.5">
+                    {/* <span className="flex items-center gap-1.5">
                       <span className="text-gold/50">◆</span>
                       {customer.memberId}
                     </span>
-                    <span className="text-gold/20">|</span>
+                    <span className="text-gold/20">|</span> */}
                     <span className="flex items-center gap-1.5">
-                      <span className="text-gold/50">◉</span>
+                      {/* <span className="text-gold/50">◉</span> */}
                       {customer.phone}
                     </span>
                   </div>

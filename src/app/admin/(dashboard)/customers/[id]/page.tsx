@@ -159,7 +159,7 @@ export default function CustomerDetailPage() {
           <MembershipCardDashboard ref={cardRef} customer={customer} />
           <DownloadCardButton
             cardRef={cardRef}
-            filename={`${customer.memberId}-membership-card.png`}
+            filename={`${customer.name}-card.png`}
           />
 
           <Card className="p-5">

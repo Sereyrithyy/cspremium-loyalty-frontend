@@ -17,7 +17,7 @@ export function MembershipCardWithDownload({
       <MembershipCard ref={cardRef} customer={customer} />
       <DownloadCardButton
         cardRef={cardRef}
-        filename={`${customer.memberId}-membership-card.png`}
+        filename={`${customer.name}-card.png`}
         className="mt-3"
       />
     </div>
