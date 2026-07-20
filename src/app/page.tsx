@@ -137,15 +137,15 @@ export default function Home() {
 
               <div>
                 <h2 className="font-display text-2xl text-ivory">
-                  Welcome, {joined.name.split(" ")[0]}!
+                  Welcome, {joined.name}!
                 </h2>
 
-                <p className="mt-2 text-sm text-mist">
+                {/* <p className="mt-2 text-sm text-mist">
                   Your membership ID is{" "}
                   <span className="font-mono text-gold-bright">
                     {joined.memberId}
                   </span>
-                </p>
+                </p> */}
               </div>
 
               <Button
