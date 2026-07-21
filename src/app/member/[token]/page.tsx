@@ -52,22 +52,20 @@ async function getActiveRewards(): Promise<Reward[]> {
 // Tier configuration
 const TIERS = {
   standard: {
-    name: "Standard",
+    name: "STANDARD",
     threshold: 0,
     nextTier: "Gold",
     nextThreshold: 500,
     color: "from-gray-300/20 to-gray-300/5 border-gray-400/30 text-gray-300",
     progressColor: "bg-gray-400",
-    badge: "⭐"
   },
   gold: {
-    name: "Gold",
+    name: "GOLD",
     threshold: 500,
     nextTier: "VIP",
     nextThreshold: 1000,
     color: "from-yellow-500/20 to-yellow-500/5 border-yellow-500/30 text-yellow-400",
     progressColor: "bg-yellow-500",
-    badge: "🌟"
   },
   vip: {
     name: "VIP",
@@ -76,7 +74,6 @@ const TIERS = {
     nextThreshold: null,
     color: "from-blue-400/20 to-blue-400/5 border-blue-400/30 text-blue-300",
     progressColor: "bg-blue-400",
-    badge: "👑"
   }
 } as const;
 
@@ -118,17 +115,14 @@ function TierProgress({ totalEarned }: { totalEarned: number }) {
         <div>
           <p className="text-sm text-white/50">Current Tier</p>
           <p className={`font-display text-2xl ${textColor}`}>
-            {tierInfo.badge} {tierInfo.name}
+            {tierInfo.name}
           </p>
         </div>
         {tierInfo.nextTier && (
           <div className="text-right">
             <p className="text-sm text-white/50">Next Tier</p>
             <p className="font-display text-xl text-white/80">
-              {TIERS[tierInfo.nextTier.toLowerCase() as TierKey].badge} {tierInfo.nextTier}
-            </p>
-            <p className="text-xs text-white/50">
-              {tierInfo.pointsNeeded} more points needed
+              {tierInfo.nextTier}
             </p>
           </div>
         )}
@@ -155,14 +149,9 @@ function TierProgress({ totalEarned }: { totalEarned: number }) {
         </div>
       </div>
       
-      {tierInfo.nextTier && (
-        <div className="mt-3 flex items-center gap-2 text-xs text-white/50">
-          <span>📈</span>
-          <span>
-            {formatPoints(totalEarned)} / {formatPoints(tierInfo.nextThreshold!)} lifetime points
-          </span>
-        </div>
-      )}
+      <p className="text-xs text-white/50 mt-2">
+        {tierInfo.pointsNeeded} more points needed
+      </p>
       
       {tierInfo.currentTier === "vip" && (
         <div className="mt-3 flex items-center gap-2 text-xs text-blue-300">
