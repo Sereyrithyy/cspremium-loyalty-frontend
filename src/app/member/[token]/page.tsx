@@ -52,7 +52,7 @@ async function getActiveRewards(): Promise<Reward[]> {
 // Tier configuration
 const TIERS = {
   standard: {
-    name: "STANDARD",
+    name: "Standard",
     threshold: 0,
     nextTier: "Gold",
     nextThreshold: 500,
@@ -60,15 +60,15 @@ const TIERS = {
     progressColor: "bg-gray-400",
   },
   gold: {
-    name: "GOLD",
+    name: "Gold",
     threshold: 500,
-    nextTier: "VIP",
+    nextTier: "Vip",
     nextThreshold: 1000,
     color: "from-yellow-500/20 to-yellow-500/5 border-yellow-500/30 text-yellow-400",
     progressColor: "bg-yellow-500",
   },
   vip: {
-    name: "VIP",
+    name: "Vip",
     threshold: 1000,
     nextTier: null,
     nextThreshold: null,
