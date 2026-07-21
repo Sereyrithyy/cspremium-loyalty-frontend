@@ -46,7 +46,7 @@ export function RewardsCatalog({
               key={reward.id}
               className={`flex gap-3 overflow-hidden p-3 ${achievable ? "border-gold-dim/50" : ""}`}
             >
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-surface-2">
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-surface-2">
                 {imageUrl ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={imageUrl} alt={reward.name} className="h-full w-full object-cover" />
@@ -57,7 +57,7 @@ export function RewardsCatalog({
 
               <div className="min-w-0 flex-1">
                 <div className="flex items-start justify-between gap-2">
-                  <p className="truncate text-[14px] text-ivory">{reward.name}</p>
+                  <p className="truncate text-[16px] text-ivory">{reward.name}</p>
                   {achievable && (
                     <span className="flex shrink-0 items-center gap-1 rounded-full bg-emerald/12 px-2 py-0.5 text-[10px] font-medium text-emerald">
                       <Check size={10} strokeWidth={2.5} />
@@ -65,9 +65,9 @@ export function RewardsCatalog({
                     </span>
                   )}
                 </div>
-                <p className="mt-0.5 line-clamp-2 text-[12px] text-mist-dim">{reward.description}</p>
+                <p className="mt-0.5 line-clamp-2 text-[14px] text-mist-dim">{reward.description}</p>
 
-                <div className="mt-2 flex items-center justify-between text-[11px]">
+                <div className="mt-2 flex items-center justify-between text-[13px]">
                   <span className="font-mono text-gold-bright">{formatPoints(reward.requiredPoints)} pts</span>
                   {!achievable && (
                     <span className="text-mist-dim">{formatPoints(remaining)} more to go</span>
