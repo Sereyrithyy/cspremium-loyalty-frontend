@@ -8,6 +8,7 @@ import { RewardsCatalog } from "@/components/customer/rewards-catalog";
 import { Card } from "@/components/ui/card";
 import { formatPoints, formatCurrency } from "@/lib/utils";
 import type { Customer, PointTransaction, Reward } from "@/types";
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000/api";
 
@@ -136,6 +137,63 @@ const fetcher = async (url: string) => {
   return data;
 };
 
+// Firework Celebration Component
+function FireworkCelebration({ 
+  show, 
+  onComplete 
+}: { 
+  show: boolean; 
+  onComplete: () => void;
+}) {
+  useEffect(() => {
+    if (show) {
+      // Auto-hide after 4 seconds
+      const timer = setTimeout(() => {
+        onComplete();
+      }, 4000);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [show, onComplete]);
+
+  if (!show) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
+      <div 
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm pointer-events-auto"
+        onClick={onComplete} // Click outside to close
+      />
+      <div className="relative z-10 flex flex-col items-center">
+        {/* Lottie Animation */}
+        <div className="w-85 h-85 pointer-events-auto">
+          <DotLottieReact
+            src="https://lottie.host/29be9e8d-2947-4513-805b-6697b598c64c/GgKsbH2FBj.lottie"
+            loop={false} // Play once for celebration
+            autoplay={true}
+            style={{ width: '100%', height: '100%' }}
+          />
+        </div>
+        
+        <div className="mt-4 text-center pointer-events-auto">
+          <h2 className="text-4xl font-display text-white animate-bounce">
+            🎉 Congratulations!
+          </h2>
+          <p className="text-xl text-white/80 mt-2">
+            {"You've reached a new tier!"}
+          </p>
+          <button
+            onClick={onComplete}
+            className="mt-6 px-6 py-2 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-white/30 transition-all pointer-events-auto"
+          >
+            Continue
+          </button>
+        </div>
+      </div>
+    </div>  
+  );
+}
+
 interface MemberPageClientProps {
   initialCustomer: Customer;
   initialTransactions: PointTransaction[];
@@ -152,6 +210,10 @@ export default function MemberPageClient({
   const [mounted, setMounted] = useState(false);
   const [isPageVisible, setIsPageVisible] = useState(true);
   const [showNotification, setShowNotification] = useState<{ message: string; type: 'success' | 'info' } | null>(null);
+  const [showFireworks, setShowFireworks] = useState(false);
+  const [previousTier, setPreviousTier] = useState<TierKey>(() => 
+    getTier(initialCustomer.totalEarned || 0)
+  );
 
   useEffect(() => {
     setMounted(true);
@@ -173,16 +235,16 @@ export default function MemberPageClient({
     fetcher,
     {
       fallbackData: { data: { customer: initialCustomer, transactions: initialTransactions } },
-      refreshInterval: isPageVisible ? 30000 : 60000, // 30s when visible, 60s when hidden
+      refreshInterval: isPageVisible ? 30000 : 60000,
       revalidateOnFocus: true,
       revalidateOnReconnect: true,
-      dedupingInterval: 10000, // Deduplicate requests within 10 seconds
+      dedupingInterval: 10000,
       onSuccess: (data) => {
-        // Check if points changed and show notification
         if (data?.data?.customer) {
           const newPoints = data.data.customer.totalPoints;
           const oldPoints = customerData?.data?.customer?.totalPoints || initialCustomer.totalPoints;
           
+          // Check if points changed
           if (newPoints !== oldPoints) {
             const diff = newPoints - oldPoints;
             setShowNotification({
@@ -192,6 +254,25 @@ export default function MemberPageClient({
             
             // Auto-hide notification after 3 seconds
             setTimeout(() => setShowNotification(null), 3000);
+          }
+
+          // Check for tier upgrade
+          const currentTotalEarned = data.data.customer.totalEarned || 0;
+          const newTier = getTier(currentTotalEarned);
+          
+          // If tier changed and it's an upgrade (not downgrade)
+          if (newTier !== previousTier) {
+            const tierLevels = ['standard', 'gold', 'vip'];
+            const prevIndex = tierLevels.indexOf(previousTier);
+            const newIndex = tierLevels.indexOf(newTier);
+            
+            // Only show fireworks if it's an upgrade
+            if (newIndex > prevIndex) {
+              setShowFireworks(true);
+            }
+            
+            // Update previous tier
+            setPreviousTier(newTier);
           }
         }
       }
@@ -204,7 +285,7 @@ export default function MemberPageClient({
     fetcher,
     {
       fallbackData: { data: initialRewards },
-      refreshInterval: 60000, // 60 seconds for rewards
+      refreshInterval: 60000,
       revalidateOnFocus: true,
       dedupingInterval: 30000,
     }
@@ -224,6 +305,12 @@ export default function MemberPageClient({
   // Render component with animation when data changes
   const renderContent = () => (
     <>
+      {/* Firework Celebration */}
+      <FireworkCelebration 
+        show={showFireworks} 
+        onComplete={() => setShowFireworks(false)} 
+      />
+
       {/* Notification Banner */}
       {showNotification && (
         <div className={`fixed top-4 right-4 z-50 px-4 py-3 rounded-lg shadow-lg transition-all duration-300 transform translate-y-0 ${

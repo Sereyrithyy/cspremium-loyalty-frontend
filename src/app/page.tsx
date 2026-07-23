@@ -7,6 +7,7 @@ import { Input, Label } from "@/components/ui/card";
 import { registerCustomer } from "@/lib/api/customers";
 import { ApiClientError } from "@/lib/api-client";
 import Image from "next/image";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 export default function Home() {
   const router = useRouter();
@@ -130,11 +131,14 @@ export default function Home() {
             </form>
           ) : (
             <div className="space-y-4 text-center">
-
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-emerald/40 bg-emerald/10 text-emerald">
-                ✓
+              <div className="w-50 h-50 pointer-events-auto mx-auto">
+                <DotLottieReact
+                  src="https://lottie.host/bd85f971-07e1-42bc-b269-1f15f83ceaf2/wJBxSH7EHi.lottie"
+                  loop={true} // Play once for celebration
+                  autoplay={true}
+                  style={{ width: '100%', height: '100%' }}
+                />
               </div>
-
               <div>
                 <h2 className="font-display text-2xl text-ivory">
                   Welcome, {joined.name}!
