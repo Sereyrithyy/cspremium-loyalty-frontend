@@ -3,7 +3,7 @@ import MemberPageClient from "./MemberPageClient";
 import type { Customer, PointTransaction, Reward } from "@/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000/api";
-
+   
 type MemberResult =
   | { status: "ok"; customer: Customer; transactions: PointTransaction[] }
   | { status: "not_found" }

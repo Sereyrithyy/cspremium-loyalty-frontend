@@ -13,18 +13,18 @@ export class ApiClientError extends Error {
 
 function getToken(): string | null {
   if (typeof window === "undefined") return null;
-  return localStorage.getItem("meridian_token");
+  return localStorage.getItem("cspremium_token");
 }
 
 export function setToken(token: string) {
   if (typeof window === "undefined") return;
-  localStorage.setItem("meridian_token", token);
+  localStorage.setItem("cspremium_token", token);
 }
 
 export function clearToken() {
   if (typeof window === "undefined") return;
-  localStorage.removeItem("meridian_token");
-  localStorage.removeItem("meridian_user");
+  localStorage.removeItem("cspremium_token");
+  localStorage.removeItem("cspremium_user");
 }
 
 interface ApiFetchOptions extends Omit<RequestInit, "body"> {
